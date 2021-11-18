@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use Database\Seeders\CountrySeeder;
+use Database\Seeders\StateSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,8 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory()->count(10)->create();
         $this->call([
-           
+            CitySeeder::class,
+            CountrySeeder::class,
+            StateSeeder::class
         ]);
     }
 }

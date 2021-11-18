@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,4 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/countries/{q}', [AddressController::class, 'countries']);
 Route::get("/states", [AddressController::class, 'states']);
-Route::get("/cities",[AddressController::class,'cities']);
+Route::get("/cities", [AddressController::class, 'cities']);
+
+Route::resources([
+    '/properties' => PropertyController::class
+]);
+
+
+Route::get('/test', function(){
+    return User::take(10)->get();
+});
